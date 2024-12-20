@@ -1,0 +1,20 @@
+// pluginManagement {
+//     repositories {
+//         gradlePluginPortal()
+//         google()
+//         mavenCentral()
+//     }
+// }
+// dependencyResolutionManagement {
+//     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+rootProject.name = "sample"
+include ':app'
+include ':unityLibrary'
+
+//括号里的是你的unityLibrary所在的路径
+project(':unityLibrary').projectDir=new File('..\\UnityAndroidBuild\\unityLibrary')

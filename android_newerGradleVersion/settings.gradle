@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+//括号里的是你的unityLibrary所在的路径
+//project(':unityLibrary').projectDir=new File('..\\UnityAndroidBuild\\unityLibrary')
+
+rootProject.name = "sample"
+include ':app'
+include ':unityLibrary' // 添加Unity 导出为安卓的、Unity游戏库
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        flatDir { // unityLibrary库：里的依赖项目库的、路径申明
+	        dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}

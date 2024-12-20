@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.me.sample'
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
+
+    defaultConfig {
+        applicationId 'com.me.sample' 
+        minSdk 31
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 31
+        multiDexEnabled true // added for Bubbles game build````````
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            // 设置支持的SO库架构，第三方给的so库哪几种架构，就配置这几种架构
+            abiFilters 'armeabi', 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    // 亲爱的表哥的活宝妹，添加下面 UnityPlayer 包裹，其实只是想要，借助AS 工具，看是否能够读源码更为方法一点儿而已
+    implementation project(':unityLibrary')
+    implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
+    
+    // implementation project(path: ':dwsdk')
+    // implementation 'com.android.support:appcompat-v7:28.0.0'
+    // implementation 'com.android.support:design:28.0.0'
+    // implementation 'com.android.support:support-v4:28.0.0'
+
+    // implementation 'com.android.support:appcompat-v7:26.0.1'
+    // implementation 'com.android.support:support-v4:26.0.1'
+
+   implementation 'androidx.appcompat:appcompat:1.4.1'
+   implementation 'com.google.android.material:material:1.6.0'
+   implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // testImplementation 'junit:junit:4.13.2'
+    // androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    // androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+}
